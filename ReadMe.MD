@@ -62,3 +62,17 @@ print(df[0])
 `https://www.kaggle.com/datasets`
 
 
+
+# Matplotlib
+
+Matplotlib (https://matplotlib.org) é a biblioteca de visualização de dados mais popular do Python.
+
+Exemplos de gráficos para serem implementados:
+
+https://matplotlib.org/gallery/index.html
+
+Possui métodos semelhantes aos métodos de plotagem gráfica do MatLab.
+
+### Instalar a biblioteca Matplotlib
+
+`pip3 install matplotlib`
