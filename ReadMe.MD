@@ -26,7 +26,7 @@ Numpy arrays essencialmente vêm de duas formas: vetores e matrizes.
 
 ##### Instalar a biblioteca NumPy
 
-`pip3 install numpy`
+`pip install numpy`
 
 
 
@@ -44,7 +44,7 @@ Possui métodos próprios de visualização de dados.
 
 ##### Instalar a biblioteca Pandas
 
-`pip3 install pandas`
+`pip install pandas`
 
 ##### Ler tabelas de uma página HTML
 
@@ -52,11 +52,11 @@ A função Pandas read_html irá ler tabelas de uma página da Web e retornar um
 
 Intalação:
 
-`pip3 install lxml`
+`pip install lxml`
 
-`pip3 install html5lib`
+`pip install html5lib`
 
-`pip3 install BeautifulSoup4`
+`pip install BeautifulSoup4`
 
 Exemplo:
 
@@ -83,7 +83,7 @@ Possui métodos semelhantes aos métodos de plotagem gráfica do MatLab.
 
 ##### Instalar a biblioteca Matplotlib
 
-`pip3 install matplotlib`
+`pip install matplotlib`
 
 
 
@@ -96,5 +96,5 @@ Possui excelentes estilos padrões
 É baseado no matplotlib, no qual permite criar alguns tipos de gráficos de forma mais fácil quando comparado ao matplotlib
 Foi projetada para funcionar em harmonia com objetos do tipo DataFrame do pandas
 
-pip3 install seaborn
+`pip install seaborn`
 
