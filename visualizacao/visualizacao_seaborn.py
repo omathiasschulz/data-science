@@ -15,8 +15,8 @@ sns.set_style('whitegrid')
 
 # Visualizar a distribuição dos dados
 # Apresenta o preço da tarifa de acordo com a idade
-# sns.jointplot(x='fare', y='age', data=titanic)
-# plt.show()
+sns.jointplot(x='fare', y='age', data=titanic)
+plt.show()
 
 sns.distplot(titanic['fare'], kde=False, color='red', bins=30)
 plt.show()

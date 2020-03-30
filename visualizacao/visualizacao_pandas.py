@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 # Alterar o estilo dos gráficos do pandas a partir do Seaborn
 import seaborn as sns
+sns.set_style('whitegrid')
 plt.style.use('ggplot')
 # plt.style.use('bmh')
 # plt.style.use('dark_background')

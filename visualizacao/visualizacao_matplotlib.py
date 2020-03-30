@@ -64,11 +64,11 @@ plt.tight_layout()
 plt.show()
 
 # Salvar uma figura
-fig.savefig("visualizacao-dados/images/figure01.png")
+fig.savefig("visualizacao/images/figure01.png")
 
 # Ajustando a qualidade da imagem
-fig.savefig("visualizacao-dados/images/figure02.png", dpi=200)
-fig.savefig("visualizacao-dados/images/figure03.png", dpi=1000)
+fig.savefig("visualizacao/images/figure02.png", dpi=200)
+fig.savefig("visualizacao/images/figure03.png", dpi=1000)
 
 # Redimencionar
 fig, axes = plt.subplots(nrows=1, ncols=2, figsize=(12, 2))
