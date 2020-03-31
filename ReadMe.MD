@@ -98,3 +98,19 @@ Foi projetada para funcionar em harmonia com objetos do tipo DataFrame do pandas
 
 `pip install seaborn`
 
+
+
+### Plotly e Cufflinks
+
+Plotly é uma biblioteca de visualização de dados interativa. Com maior poder de interpretação dos dados.
+Utilizado para gráficos financeiros e possui um visual superior.
+
+`pip install plotly`
+
+Cufflinks é uma biblioteca de visualização de dados.
+
+Link: https://github.com/santosjorge/cufflinks
+
+`pip install cufflinks`
+
+`pip install chart_studio`
