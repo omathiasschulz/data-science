@@ -114,6 +114,10 @@ Possui uma interatividade com o gráfico muito grande, como:
 
 `pip install plotly`
 
+Mais informações sobre como usar o Plotly 
+https://plotly.com/python/
+
+
 Cufflinks é uma biblioteca de visualização de dados.
 
 Link: https://github.com/santosjorge/cufflinks
