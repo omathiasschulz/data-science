@@ -89,3 +89,65 @@ iplot(choromap)
 # Mais informações sobre como usar o Plotly 
 # https://plotly.com/python/
 
+# Documentação Mapas Choropleth  
+# https://plot.ly/python/reference/#choropleth)
+
+
+
+# Mapa geográfico mundial sobre o consumo de energia no ano de 2014
+# Visualizando o arquivo csv: 2014_World_Power_Consumption
+df = pd.read_csv('visualizacao/df/2014_World_Power_Consumption')
+print(df.head())
+
+data = {
+    'type': 'choropleth', # Tipo de mapa
+    'colorscale': 'Viridis', # Cores do mapa
+    'locations': df['Country'], # Estados que possuirão cor
+    'locationmode':'country names', # Determina o que são as locations
+    'z': df['Power Consumption KWH'], # Intensidade da cor de acordo com o valor
+    'text': df['Text'], # Texto que aparece em cada estado
+    'colorbar': {'title': 'Consumo de energia em KWH'},
+}
+
+layout = {
+    'title': 'Consumo mundial de energia (2014)',
+    'geo': {
+        'showframe': False, # Sem bordas no mapa
+        'projection': {'type': 'mercator'},
+        'showlakes': True, # Mostrar os lagos
+        'lakecolor': 'rgb(85, 173, 240)', # Cor dos lagos
+    },
+}
+
+choromap = go.Figure(data = [data], layout = layout)
+iplot(choromap, validate=False)
+
+
+
+# Choropleth EUA Voting-Age Population (2012)
+df = pd.read_csv('visualizacao/df/2012_Election_Data')
+print(df.head())
+print(df.info())
+
+data = {
+    'type': 'choropleth',
+    'colorscale': 'Viridis',
+    'locations': df['State Abv'],
+    'locationmode': 'USA-states',
+    'z': df['Voting-Age Population (VAP)'],
+    'text': df['State'] + ' ' + df['State Abv'],
+    'colorbar': {'title': 'Voting age population'}
+}
+
+layout = {
+    'title': 'EUA Voting-Age Population (2012)',
+    'geo': {
+        'scope': 'usa', # Qual a região do mundo
+        'showlakes': True,
+    }
+}
+
+choromap = go.Figure(data = [data],layout = layout)
+iplot(choromap,validate=False)
+
+
