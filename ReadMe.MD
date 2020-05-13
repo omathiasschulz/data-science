@@ -105,6 +105,13 @@ Foi projetada para funcionar em harmonia com objetos do tipo DataFrame do pandas
 Plotly é uma biblioteca de visualização de dados interativa. Com maior poder de interpretação dos dados.
 Utilizado para gráficos financeiros e possui um visual superior.
 
+Possui uma interatividade com o gráfico muito grande, como:
+- Baixar o arquivo como PNG
+- Salvar na nuvem
+- É possível realizar zoom no gráfico
+- É possível se movimentar pelo gráfico
+
+
 `pip install plotly`
 
 Cufflinks é uma biblioteca de visualização de dados.
