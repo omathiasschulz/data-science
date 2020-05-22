@@ -7,7 +7,7 @@
 import pandas as pd
 
 # Ler o arquivo Salaries.csv como um DataFrame
-sal = pd.read_csv('analise-dados/Salaries.csv')
+sal = pd.read_csv('analise/df/Salaries.csv')
 
 # Verificar o "head" do DataFrame
 print(sal.head())

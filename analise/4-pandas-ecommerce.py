@@ -7,7 +7,7 @@
 import pandas as pd
 
 # Ler o arquivo como um DataFrame
-ecom = pd.read_csv('analise-dados/Ecommerce Purchases')
+ecom = pd.read_csv('analise/df/Ecommerce Purchases')
 
 # Verificar o "head" do DataFrame
 print(ecom.head())
