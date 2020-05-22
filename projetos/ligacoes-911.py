@@ -117,28 +117,32 @@ plt.show()
 
 print('\n\n# Preenchendo os meses que faltam')
 
-# Count das colunas por mês
+print('\n\n## Count das colunas por mês')
 byMonth = df.groupby('month').count()
 print(byMonth.head(12))
 
+print('\n\n## Plot simples de linha indicando a contagem de chamadas por mês')
+byMonth['twp'].plot()
+plt.show()
 
+print('\n\n## Resetado o index do df - Index month passa a ser uma coluna')
+byMonth = byMonth.reset_index()
 
+print('\n\n## Seaborn - Criação de um modelo linear')
+sns.lmplot(x='month', y='twp', data=byMonth)
+plt.show()
 
+print('\n\n## Nova coluna data')
+df['data'] = df['timeStamp'].apply(lambda data : data.date())
 
-# ** Agora crie um plot simples fora do Dataframe indicando a contagem de chamadas por mês. **
-
-
-# ** Agora veja se você pode usar o lmplot () do Seaborn para criar um modelo linear no número de chamadas por mês. 
-# Tenha em mente que talvez seja necessário resetar o índice em uma coluna. **
-
-
-# ** Crie uma nova coluna chamada 'Data' que contenha a data da coluna timeStamp. 
-# Você precisará usar .apply() junto com o método .date(). **
-
-
+print('\n\n## ')
 # ** Agora agrupe esta coluna Data com o groupby. Usando o count (), crie um gráfico de contagens de chamadas 911. **
+df.groupby('data').count().plot()
+plt.show()
 
 
+
+print('\n\n## ')
 # ** Agora recrie esse plot, mas crie 3 plots separados com cada plot representando uma Razão para a chamada 911 **
 
 
