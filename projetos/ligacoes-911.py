@@ -132,42 +132,57 @@ print('\n\n## Seaborn - Criação de um modelo linear')
 sns.lmplot(x='month', y='twp', data=byMonth)
 plt.show()
 
-print('\n\n## Nova coluna data')
+
+print('\n\n# Nova coluna data')
 df['data'] = df['timeStamp'].apply(lambda data : data.date())
 
-print('\n\n## ')
-# ** Agora agrupe esta coluna Data com o groupby. Usando o count (), crie um gráfico de contagens de chamadas 911. **
-df.groupby('data').count().plot()
+print('\n\n## Agrupando a coluna data com o groupby. Usando o count () e criando um gráfico de contagens de chamadas 911')
+df.groupby('data').count()['twp'].plot()
+plt.show()
+
+print('\n\n## Agrupando a coluna data com o groupby. Usando o count () e criando um gráfico de contagens de chamadas 911')
+print('## Baseado na razão EMS')
+df[df['reason'] == 'EMS'].groupby('data').count()['twp'].plot()
+plt.show()
+
+print('\n\n## Agrupando a coluna data com o groupby. Usando o count () e criando um gráfico de contagens de chamadas 911')
+print('## Baseado na razão Traffic')
+df[df['reason'] == 'Traffic'].groupby('data').count()['twp'].plot()
+plt.show()
+
+print('\n\n## Agrupando a coluna data com o groupby. Usando o count () e criando um gráfico de contagens de chamadas 911')
+print('## Baseado na razão Fire')
+df[df['reason'] == 'Fire'].groupby('data').count()['twp'].plot()
 plt.show()
 
 
+print('\n\n# Reestruturação do DF e novos plots')
 
-print('\n\n## ')
-# ** Agora recrie esse plot, mas crie 3 plots separados com cada plot representando uma Razão para a chamada 911 **
+print('\n\n## Reestruturando o quadro de dados para que as colunas se tornem horas e o índice se torne o Dia da Semana')
+dfDayHour = df.groupby(by=['dayWeekText', 'hour']).count()['twp']
+print(dfDayHour.head(100))
+dfDayHour = df.groupby(by=['dayWeekText', 'hour']).count()['twp'].unstack()
+print(dfDayHour.head(100))
 
+print('\n\n## Seaborn - Criação de um mapa de calor')
+sns.heatmap(data=dfDayHour)
+plt.show()
 
-
-
-
-
-# ** Agora vamos continuar a criar mapas de calor com seaborn e nossos dados. 
-# Em primeiro lugar, devemos reestruturar o quadro de dados para que as colunas se tornem 
-# horas e o Índice se torne o Dia da Semana. Há muitas maneiras de fazer isso,
-# mas eu recomendaria tentar combinar groupby com o método [unstack]
-# (http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.unstack.html) . 
-# Consulte as soluções se você ficar preso nisso! **
-
-
-# ** Agora crie um mapa de calor usando este DataFrame **
+print('\n\n## Seaborn - Criação de um clustermap')
+sns.clustermap(data=dfDayHour)
+plt.show()
 
 
-# ** Agora crie um clustermap usando este DataFrame. **
+print('\n\n# Reestruturação do DF e novos plots')
 
+print('\n\n## Reestruturando o quadro de dados para que as colunas se tornem os meses e o índice se torne o Dia da Semana')
+dfDayMonth = df.groupby(by=['dayWeekText', 'month'])['twp'].count().unstack()
+print(dfDayMonth.head(100))
 
-# ** Agora repita estes mesmos plots e operações para um DataFrame que mostra o mês como a coluna. **
+print('\n\n## Seaborn - Criação de um mapa de calor')
+sns.heatmap(data=dfDayMonth)
+plt.show()
 
-
-
-
-
-
+print('\n\n## Seaborn - Criação de um clustermap')
+sns.clustermap(data=dfDayMonth)
+plt.show()
