@@ -125,3 +125,20 @@ Link: https://github.com/santosjorge/cufflinks
 `pip install cufflinks`
 
 `pip install chart_studio`
+
+
+
+# Projetos
+
+
+
+## Pandas Data Reader
+
+O datareader Pandas permite que você leia informações das ações diretamente da internet
+Utilizando o pandas para ler diretamente os dados a partir do Google
+
+Link: https://github.com/pydata/pandas-datareader
+
+Link: https://pandas-datareader.readthedocs.io/en/latest/
+
+`pip install pandas-datareader`
