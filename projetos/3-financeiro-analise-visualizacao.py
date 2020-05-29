@@ -11,28 +11,31 @@ import numpy as np
 print('\n\n# Leitura do CSV')
 DIRECTORY = 'projetos/df/'
 FILENAME = 'mercado-financeiro.csv'
-newDF = pd.read_csv(DIRECTORY + FILENAME, header=[0, 1], index_col=0)
-print(newDF.head())
-print(newDF.info())
+dfBanks = pd.read_csv(DIRECTORY + FILENAME, header=[0, 1], index_col=0)
+print(dfBanks.head())
+print(dfBanks.info())
 
 
+print('\n\n# Análise de dados exploratória')
+
+print('\n\n## Preço máximo de fechamento para cada banco durante todo o período')
+
+print('### De apenas um banco: ')
+print(dfBanks.xs(('BAC', 'Close'), axis=1).max())
+
+print('### Todos os bancos: ')
+print(dfBanks.xs(key='Close', axis=1, level='Stock Info').max())
 
 
-
-# # Análise de dados exploratória
-# 
-# Vamos explorar os dados um pouco! Antes de prosseguir, sugiro que você verifique a documentação no [Multi-Level Indexing](http://pandas.pydata.org/pandas-docs/stable/advanced.html) e [como usar .xs](http: // pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.xs.html).
-# Consulte as soluções se você não consiga descobrir como usar .xs (), uma vez que isso será uma parte importante desse projeto.
-# 
-# ** Qual é o preço máximo de fechamento para cada banco durante todo o período? **
-
-
-# ** Crie um novo DataFrame vazio chamado returns. Este dataframe conterá os retornos para o ação de cada banco. Os retornos geralmente são definidos por: **
+# ** Crie um novo DataFrame vazio chamado returns. 
+# Este dataframe conterá os retornos para o ação de cada banco. Os retornos geralmente são definidos por: **
 # 
 # $$r_t = \frac{p_t - p_{t-1}}{p_{t-1}} = \frac{p_t}{p_{t-1}} - 1$$
 
 
-# ** Podemos usar o método pct_change () pandas na coluna close para criar uma coluna que represente esse valor de retorno. Crie um loop for que vá e para cada Bank Stock Ticker cria essa coluna de retorno e configura-a como uma coluna nos dados DataFrame. **
+# ** Podemos usar o método pct_change () pandas na coluna close para criar uma coluna que represente esse valor de retorno.
+#  Crie um loop for que vá e para cada Bank Stock Ticker cria essa coluna de retorno e
+#  configura-a como uma coluna nos dados DataFrame. **
 
 
 
@@ -40,9 +43,13 @@ print(newDF.info())
 
 
 
-# ** Usando o seu DataFrame returns, descubra quais datas cada ação dos bancos teve o melhor e o pior dia de retorno. Você deve notar que 4 dos bancos compartilham o mesmo dia para a pior queda. Alguma coisa significante aconteceu naquele dia? **
+# ** Usando o seu DataFrame returns, descubra quais datas cada ação dos bancos teve o melhor e o pior dia de retorno.
+#  Você deve notar que 4 dos bancos compartilham o mesmo dia para a pior queda.
+#  Alguma coisa significante aconteceu naquele dia? **
 
-# ** Dê uma olhada no desvio padrão dos retornos. Qual ação você classificaria como a mais arriscada durante todo o período de tempo? Qual você classificaria como a mais arriscado para o ano 2015? **
+# ** Dê uma olhada no desvio padrão dos retornos. 
+# Qual ação você classificaria como a mais arriscada durante todo o período de tempo? 
+# Qual você classificaria como a mais arriscado para o ano 2015? **
 
 
 # ** Crie um distplot usando seaborn dos retornos de 2015 para Morgan Stanley **
@@ -53,7 +60,9 @@ print(newDF.info())
 
 # # Mais visualização
 # 
-# Muito desse projeto se concentrará em visualizações. Sinta-se livre para usar qualquer uma das suas bibliotecas de visualização preferidas para tentar recriar os plots descritos abaixo, seaborn, matplotlib, plotly e cufflinks, ou apenas pandas.
+# Muito desse projeto se concentrará em visualizações. 
+# Sinta-se livre para usar qualquer uma das suas bibliotecas de visualização preferidas para tentar recriar os
+#  plots descritos abaixo, seaborn, matplotlib, plotly e cufflinks, ou apenas pandas.
 # 
 # ### Importações
 
@@ -64,7 +73,10 @@ print(newDF.info())
 # get_ipython().run_line_magic('matplotlib', 'inline')
 
 
-# ** Crie um gráfico de linha mostrando o preço de fechamento para cada banco para todo o índice de tempo. (Sugestão: tente usar um loop for ou use [.xs](http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.xs.html) para obter uma seção transversal dos dados .) **
+# ** Crie um gráfico de linha mostrando o preço de fechamento para cada banco para todo o índice de tempo.
+#  (Sugestão: tente usar um loop for ou use [.xs]
+# (http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.xs.html) 
+# para obter uma seção transversal dos dados .) **
 
 
 
@@ -81,4 +93,5 @@ print(newDF.info())
 # ** Opcional: use o clustermap do seaborn para agrupar as correlações: **
 
 
-# Definitivamente, muitos tópicos de finanças específicos aqui, então não se preocupe se você não os entendeu todos! A única coisa que você deve estar preocupado com a compreensão são os pandas básicos e operações de visualização.
+# Definitivamente, muitos tópicos de finanças específicos aqui, então não se preocupe se você não os entendeu todos! 
+# A única coisa que você deve estar preocupado com a compreensão são os pandas básicos e operações de visualização.
