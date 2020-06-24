@@ -6,7 +6,8 @@
 
 import pandas as pd
 import numpy as np
-
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 print('\n\n# Leitura do CSV')
 DIRECTORY = 'projetos/df/'
@@ -27,71 +28,68 @@ print('### Todos os bancos: ')
 print(dfBanks.xs(key='Close', axis=1, level='Stock Info').max())
 
 
-# ** Crie um novo DataFrame vazio chamado returns. 
-# Este dataframe conterá os retornos para o ação de cada banco. Os retornos geralmente são definidos por: **
-# 
-# $$r_t = \frac{p_t - p_{t-1}}{p_{t-1}} = \frac{p_t}{p_{t-1}} - 1$$
+print('\n\n# Novo DataFrame vazio chamado returns')
+returns = pd.DataFrame()
 
 
-# ** Podemos usar o método pct_change () pandas na coluna close para criar uma coluna que represente esse valor de retorno.
-#  Crie um loop for que vá e para cada Bank Stock Ticker cria essa coluna de retorno e
-#  configura-a como uma coluna nos dados DataFrame. **
+print('\n\n# DataFrame com os retornos para o ação de cada banco')
+tickers = ['BAC', 'C', 'GS', 'JPM', 'MS', 'WFC']
+for tick in tickers:
+    returns[tick + 'Return'] = dfBanks[tick]['Close'].pct_change()
+print(returns.head())
 
 
-
-# ** Crie um parplot utilizando seaborn no dataframe de retorno. **
-
-
-
-# ** Usando o seu DataFrame returns, descubra quais datas cada ação dos bancos teve o melhor e o pior dia de retorno.
-#  Você deve notar que 4 dos bancos compartilham o mesmo dia para a pior queda.
-#  Alguma coisa significante aconteceu naquele dia? **
-
-# ** Dê uma olhada no desvio padrão dos retornos. 
-# Qual ação você classificaria como a mais arriscada durante todo o período de tempo? 
-# Qual você classificaria como a mais arriscado para o ano 2015? **
+print('\n\n# Parplot utilizando seaborn no dataframe de retorno')
+sns.pairplot(returns)
+plt.show()
 
 
-# ** Crie um distplot usando seaborn dos retornos de 2015 para Morgan Stanley **
+print('\n\n# Datas de cada ação dos bancos que teve o melhor e o pior dia de retorno')
+print(returns.idxmin())
+print(returns.idxmax())
 
 
-# ** Crie um distplot usando seaborn dos retornos de 2008 para CitiGroup **
+print('\n\n# Desvio padrão dos retornos')
+print(returns.std())
 
 
-# # Mais visualização
-# 
-# Muito desse projeto se concentrará em visualizações. 
-# Sinta-se livre para usar qualquer uma das suas bibliotecas de visualização preferidas para tentar recriar os
-#  plots descritos abaixo, seaborn, matplotlib, plotly e cufflinks, ou apenas pandas.
-# 
-# ### Importações
+print('\n\n# Desvio padrão dos retornos apenas no ano de 2015')
+print(returns.loc['2015-01-01':'2015-12-31'].std())
 
 
-# import matplotlib.pyplot as plt
-# import seaborn as sns
-# sns.set_style('whitegrid')
-# get_ipython().run_line_magic('matplotlib', 'inline')
+print('\n\n# Distplot usando seaborn dos retornos de 2015 para Morgan Stanley')
+sns.distplot(returns.loc['2015-01-01':'2015-12-31']['MSReturn'])
+plt.show()
 
 
-# ** Crie um gráfico de linha mostrando o preço de fechamento para cada banco para todo o índice de tempo.
-#  (Sugestão: tente usar um loop for ou use [.xs]
-# (http://pandas.pydata.org/pandas-docs/stable/generated/pandas.DataFrame.xs.html) 
-# para obter uma seção transversal dos dados .) **
+print('\n\n# Distplot usando seaborn dos retornos de 2008 para CitiGroup')
+sns.distplot(returns.loc['2008-01-01':'2008-12-31']['CReturn'])
+plt.show()
 
 
+print('\n\n# Gráfico de linha mostrando o preço de fechamento para cada banco para todo o índice de tempo')
 
-# ## Médias móveis
-# 
-# Vamos analisar as médias móveis para essas ações no ano de 2008.
-# 
-# ** Trace a média de 30 dias para o preço do Bank Of America para o ano de 2008 **
+print('\n## Forma 01:')
+for tick in tickers:
+    dfBanks[tick]['Close'].plot(figsize=(12, 4), label=tick)
+plt.legend()
+plt.show()
+
+print('\n## Forma 02:')
+dfBanks.xs(key='Close',axis=1,level='Stock Info').plot(figsize=(12, 4))
+plt.show()
 
 
-# ** Crie um mapa de calor da correlação entre os preços de fechamento das ações. **
+print('\n\n# Médias móveis (média de 30 dias) para o preço do Bank Of America para o ano de 2008')
+dfBAC = dfBanks['BAC']
+plt.figure(figsize=(12,6))
+dfBAC['Close'].loc['2008-01-01':'2009-01-01'].rolling(window=30).mean().plot(label='Média móvel de 30 dias')
+dfBAC['Close'].loc['2008-01-01':'2009-01-01'].plot(label='Fechamento Bank Of America')
+plt.legend()
+plt.show()
 
 
-# ** Opcional: use o clustermap do seaborn para agrupar as correlações: **
-
-
-# Definitivamente, muitos tópicos de finanças específicos aqui, então não se preocupe se você não os entendeu todos! 
-# A única coisa que você deve estar preocupado com a compreensão são os pandas básicos e operações de visualização.
+print('\n\n# Mapa de calor da correlação entre os preços de fechamento das ações')
+matrixCorrelacao = dfBanks.xs(key='Close',axis=1,level='Stock Info').corr()
+sns.heatmap(matrixCorrelacao, annot=True)
+plt.show()
