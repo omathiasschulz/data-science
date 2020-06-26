@@ -2,5 +2,8 @@
     "python.pythonPath": "/usr/bin/python3",
     "python.linting.enabled": true,
     "python.linting.lintOnSave": true,
-    "python.linting.pylintArgs": ["--generate-members"],
+    "python.linting.pylintArgs": [
+        "--generate-members"
+    ],
+    "python.linting.pylintEnabled": true,
 }
