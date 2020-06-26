@@ -142,3 +142,16 @@ Link: https://github.com/pydata/pandas-datareader
 Link: https://pandas-datareader.readthedocs.io/en/latest/
 
 `pip install pandas-datareader`
+
+
+
+# Machine Learning
+
+
+
+## scikit-learn
+
+Biblioteca de aprendizado de máquina de código aberto, possui ferramentas simples e eficientes para análise preditiva de dados
+
+`pip3 install -U scikit-learn scipy matplotlib`
+
