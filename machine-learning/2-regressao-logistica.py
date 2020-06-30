@@ -9,6 +9,9 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 sns.set_palette("GnBu_d")
 sns.set_style('whitegrid')
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import classification_report
 
 
 print('\n\n# Leitura do dataset')
@@ -22,101 +25,54 @@ print(dfData.describe())
 
 
 
+print('\n\n\n### Análise de dados exploratória')
 
+print('\n\n# Histograma da coluna  "Age"')
+dfData['Age'].hist(bins=30)
+plt.xlabel('Age')
+plt.show()
 
 
+print('\n\n# Joinplot mostrando Area Income (Média da renda do consumidor na região) versus Age (Idade do consumidor)')
+sns.jointplot(x='Area Income', y='Age', data=dfData)
+plt.show()
 
-# ## Análise de dados exploratória
-# 
-# Vamos usar Seaborn para explorar os dados!
-# 
-# Tente recriar os gráficos abaixo.
-# 
-# ** Crie um histograma de "Age" **
 
+print('\n\n# Jointplot mostrando as distribuições KDE do Daily Time Spent on Site (tempo no site em minutos) versus Age (idade do consumidor)')
+sns.jointplot(x='Daily Time Spent on Site', y='Age', data=dfData, kind='kde')
+plt.show()
 
 
+print('\n\n# Jointplot mostrando Daily Time Spent on Site (tempo no site em minutos) versus Daily Internet Usage (Média em minutos por dia na internet)')
+sns.jointplot(x='Daily Time Spent on Site', y='Daily Internet Usage', data=dfData)
+plt.show()
 
 
-# ** Crie um joinplot mostrando "Area Income" versus "Age" **
+print('\n\n# Pairplot definido pelo recurso de coluna Clicked on Ad')
+sns.pairplot(dfData, hue='Clicked on Ad', palette='bwr')
+plt.show()
 
 
 
+print('\n\n\n### Regressão Logística')
 
+print('\n\n# Separando o dataset em treino e teste')
+X = dfData[['Daily Time Spent on Site', 'Age', 'Area Income', 'Daily Internet Usage', 'Male']]
+Y = dfData[['Clicked on Ad']]
 
-# ** Crie um jointplot que mostre as distribuições KDE do "Daily Time spent" no site vs "Age". **
+xTreino, xTeste, yTreino, yTeste = train_test_split(X, Y, test_size=0.3)
 
 
+print('\n\n# Treinando e ajustando o modelo de regressão logística no conjunto de treinamento')
+model = LogisticRegression()
+model.fit(xTreino, yTreino)
 
 
+print('\n\n# Previsões')
+predict = model.predict(xTeste)
 
-# ** Crie um jointplot do 'Daily Time Spent on Site' vs. 'Daily Internet Usage'**
 
+print('\n\n# Relatório de classificação do modelo')
 
-
-
-
-# ** Finalmente, crie um parplot com o matiz definido pelo recurso de coluna 'Clicked on Ad'. **
-
-
-
-
-
-# 
-# # Regressão Logística
-# 
-# Agora é hora de quebrar nossos dados em treino e teste e fitar nosso modelo.
-# 
-# Você terá a liberdade aqui para escolher colunas em que deseja treinar!
-
-# ** Divida os dados em conjunto de treinamento e conjunto de testes usando train_test_split **
-
-
-
-
-
-
-
-
-
-
-
-
-
-# ** Treine e ajuste um modelo de regressão logística no conjunto de treinamento. **
-
-
-
-
-
-
-
-
-
-# ## Previsões e avaliações
-# ** Agora preveja valores para os dados de teste. **
-
-
-
-
-
-# ** Crie um relatório de classificação para o modelo. **
-
-
-
-
-
-# * 'Daily Time Spent on Site': tempo no site em minutos.
-# * 'Age': idade do consumidor.
-# * 'Area Income': Média da renda do consumidor na região.
-# * 'Daily Internet Usage': Média em minutos por di que o consumidor está na internet.
-# * 'Linha do tópico do anúncio': Título do anúncio.
-# * 'City': Cidade do consumidor.
-# * 'Male': Se o consumidor era ou não masculino.
-# * 'Country': País do consumidor.
-# * 'Timestamp': hora em que o consumidor clicou no anúncio ou janela fechada.
-# * 'Clicked on Ad'': 0 ou 1 indicam se clicou ou não no anúncio.
-
-
-
+print(classification_report(yTeste, predict))
 
