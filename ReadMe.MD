@@ -118,4 +118,4 @@ O [datareader Pandas](https://github.com/pydata/pandas-datareader) permite que v
 
 O [scikit-learn](https://scikit-learn.org/stable/) é uma biblioteca de aprendizado de máquina de código aberto, possui ferramentas simples e eficientes para análise preditiva de dados
 
-`pip3 install -U scikit-learn scipy matplotlib`
+`pip install -U scikit-learn scipy matplotlib`
