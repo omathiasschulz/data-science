@@ -1,5 +1,7 @@
 # Python
 
+Diversos exemplos de análise de dados em Python
+
 Para as instalações, utilize sistema de gerenciamento de pacotes pip para Python 2 e o pip3 para Python 3
 
 Datasets de testes disponível no [Kaggle](https://www.kaggle.com/datasets)
