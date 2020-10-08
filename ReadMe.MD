@@ -1,6 +1,8 @@
 # Python
 
-Diversos exemplos de análise de dados em Python
+Diversos exemplos de análise, visualização de dados em Python. Exemplos de projetos simples e projetos com Aprendizado de Máquina e Processamento de linguagem natural
+
+## Instalação
 
 Para as instalações, utilize sistema de gerenciamento de pacotes pip para Python 2 e o pip3 para Python 3
 
