@@ -1,6 +1,6 @@
 # Python
 
-Diversos exemplos de análise, visualização de dados em Python. Exemplos de projetos simples e projetos com Aprendizado de Máquina e Processamento de linguagem natural
+Diversos exemplos de análise e visualização de dados em Python. Exemplos de projetos simples e exemplos que envolvem Aprendizado de Máquina e Processamento de linguagem natural
 
 ## Instalação
 
